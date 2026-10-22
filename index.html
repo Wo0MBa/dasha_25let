@@ -2166,7 +2166,14 @@
         ];
 
         try {
-          const saved = localStorage.getItem('dasha_quest_chronology_archive_v2');
+          // Clear legacy duplicate cache if present
+          if (localStorage.getItem('dasha_quest_chronology_archive_v2')) {
+            localStorage.removeItem('dasha_quest_chronology_archive_v2');
+            localStorage.removeItem('dasha_quest_chronology_archive');
+            localStorage.removeItem('humor_photo_8');
+            localStorage.removeItem('humor_photo_9');
+          }
+          const saved = localStorage.getItem('dasha_quest_chronology_archive_v3');
           if (saved) {
             const parsed = JSON.parse(saved);
             if (Array.isArray(parsed) && parsed.length === 16) return parsed;
@@ -4496,8 +4503,7 @@
     // Сохранение архива хронологии в LocalStorage
     function saveChronologyArchive() {
       try {
-        localStorage.setItem('dasha_quest_chronology_archive_v2', JSON.stringify(CONFIG.chronologyArchive));
-        localStorage.setItem('dasha_quest_chronology_archive', JSON.stringify(CONFIG.chronologyArchive));
+        localStorage.setItem('dasha_quest_chronology_archive_v3', JSON.stringify(CONFIG.chronologyArchive));
       } catch (e) {
         console.warn('LocalStorage save error:', e);
       }
@@ -4777,6 +4783,7 @@
       if (!confirm('Сбросить хронологию к исходным 16 годам (2004–2026)?')) return;
       localStorage.removeItem('dasha_quest_chronology_archive');
       localStorage.removeItem('dasha_quest_chronology_archive_v2');
+      localStorage.removeItem('dasha_quest_chronology_archive_v3');
       const DEFAULT_16_YEARS = [
         { id: 1, year: 2004, age: "3 годика", photo: "./blok4/humor1.jpg", title: "2004 год", note: "3 годика: Малышка и первые шаги", targetOrder: 1 },
         { id: 2, year: 2008, age: "7 лет", photo: "./blok4/humor2.jpg", title: "2008 год", note: "7 лет: Школьная пора, 1-й класс", targetOrder: 2 },
