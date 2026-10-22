@@ -255,11 +255,14 @@
               id="intro-video" 
               class="w-full h-full object-contain block mx-auto bg-black" 
               playsinline 
+              webkit-playsinline
               controls 
               preload="metadata"
-              poster="./assets/aistudio/intro_poster.jpg">
-              <source id="intro-video-src" src="./assets/aistudio/intro_video_h264.mp4" type="video/mp4" />
-              <source src="./videos/intro_video.mp4" type="video/mp4" />
+              poster="./videos/intro_poster.jpg"
+              onerror="if(!this.dataset.posterFb){this.dataset.posterFb='1';this.poster='./assets/aistudio/intro_poster.jpg';}">
+              <source id="intro-video-src" src="./videos/intro_video.mp4" type="video/mp4" />
+              <source src="./assets/aistudio/intro_video_h264.mp4" type="video/mp4" />
+              <source src="videos/intro_video.mp4" type="video/mp4" />
               Ваш браузер не поддерживает видео.
             </video>
             
@@ -1095,10 +1098,14 @@
               id="final-video" 
               class="w-full h-full object-contain block mx-auto bg-black" 
               playsinline 
+              webkit-playsinline
               controls 
               preload="metadata"
-              poster="./assets/aistudio/final_poster.jpg">
-              <source id="final-video-src" src="./assets/aistudio/final_video_h264.mp4" type="video/mp4" />
+              poster="./videos/final_poster.jpg"
+              onerror="if(!this.dataset.posterFb){this.dataset.posterFb='1';this.poster='./assets/aistudio/final_poster.jpg';}">
+              <source id="final-video-src" src="./videos/final_video.mp4" type="video/mp4" />
+              <source src="./assets/aistudio/final_video_h264.mp4" type="video/mp4" />
+              <source src="videos/final_video.mp4" type="video/mp4" />
               Ваш браузер не поддерживает видео.
             </video>
 
@@ -1208,6 +1215,7 @@
         id="media-modal-video" 
         class="hidden max-w-full max-h-[76vh] w-auto h-auto rounded-2xl shadow-2xl object-contain mx-auto block"
         playsinline 
+        webkit-playsinline
         controls 
         preload="metadata">
         <source id="media-modal-video-src" src="" type="video/mp4" />
@@ -1554,10 +1562,10 @@
 
       giftLocation: "Твои подарки от семьи спрятаны в пакете в месте, которое полно загадочных горячительных напитков! 🍾✨",
 
-      introVideo: "./assets/aistudio/intro_video_h264.mp4",
-      finalVideo: "./assets/aistudio/final_video_h264.mp4",
-      defaultIntroVideo: "./assets/aistudio/intro_video_h264.mp4",
-      defaultFinalVideo: "./assets/aistudio/final_video_h264.mp4",
+      introVideo: "./videos/intro_video.mp4",
+      finalVideo: "./videos/final_video.mp4",
+      defaultIntroVideo: "./videos/intro_video.mp4",
+      defaultFinalVideo: "./videos/final_video.mp4",
 
       // ================================================================
       // КАТЕГОРИЯ 1: КАРТОТЕКА ГРИМАС (5 СЕКРЕТНЫХ УЛИК ПОД ЗАМКОМ)
@@ -2444,7 +2452,18 @@
         imgEl.classList.add('hidden');
         videoEl.classList.remove('hidden');
         zoomBtn.classList.add('hidden');
+        videoEl.dataset.fb = '0';
+        videoEl.onerror = function() {
+          if (this.dataset.fb === '0' && fallbackSrc && fallbackSrc !== src) {
+            this.dataset.fb = '1';
+            videoSrc.src = fallbackSrc;
+            videoEl.src = fallbackSrc;
+            videoEl.load();
+            videoEl.play().catch(() => {});
+          }
+        };
         videoSrc.src = src;
+        videoEl.src = src;
         videoEl.load();
         videoEl.play().catch(() => {});
       } else {
@@ -2471,7 +2490,10 @@
     function closeMediaModal() {
       const modal = document.getElementById('media-modal');
       const videoEl = document.getElementById('media-modal-video');
-      videoEl.pause();
+      if (videoEl) {
+        videoEl.pause();
+        videoEl.removeAttribute('src');
+      }
       modal.classList.add('hidden');
       modal.classList.remove('flex');
     }
@@ -5368,7 +5390,13 @@
           if (giftCard) giftCard.classList.add('hidden');
 
           const finalVid = document.getElementById('final-video');
-          if (finalVid) finalVid.play().catch(() => {});
+          if (finalVid) {
+            finalVid.load();
+            const p = finalVid.play();
+            if (p && typeof p.catch === 'function') {
+              p.catch(() => {});
+            }
+          }
         }, 600);
       } else {
         soundEffects.wrong();
@@ -5620,10 +5648,15 @@
           if (introVid) introVid.load();
           if (introBadge) introBadge.innerHTML = `✓ Своё видео: <b>${introRecord.name || 'intro.mp4'}</b>`;
         } else if (introStoredUrl && !introStoredUrl.includes('BigBuckBunny')) {
-          CONFIG.introVideo = introStoredUrl;
-          if (introSrc) introSrc.src = introStoredUrl;
-          if (introVid) introVid.load();
-          if (introBadge) introBadge.innerHTML = `✓ Видео по ссылке`;
+          if (introStoredUrl.startsWith('blob:') || introStoredUrl.includes('localhost') || introStoredUrl.includes('127.0.0.1')) {
+            localStorage.removeItem('dasha_quest_intro_video_url');
+            localStorage.removeItem('dasha_quest_intro_server_url');
+          } else {
+            CONFIG.introVideo = introStoredUrl;
+            if (introSrc) introSrc.src = introStoredUrl;
+            if (introVid) introVid.load();
+            if (introBadge) introBadge.innerHTML = `✓ Видео по ссылке`;
+          }
         } else {
           if (introBadge) introBadge.innerHTML = `✓ Приветственное видео загружено`;
         }
@@ -5644,10 +5677,15 @@
           if (finalVid) finalVid.load();
           if (finalBadge) finalBadge.innerHTML = `✓ Своё видео: <b>${finalRecord.name || 'final.mp4'}</b>`;
         } else if (finalStoredUrl && !finalStoredUrl.includes('BigBuckBunny')) {
-          CONFIG.finalVideo = finalStoredUrl;
-          if (finalSrc) finalSrc.src = finalStoredUrl;
-          if (finalVid) finalVid.load();
-          if (finalBadge) finalBadge.innerHTML = `✓ Видео по ссылке`;
+          if (finalStoredUrl.startsWith('blob:') || finalStoredUrl.includes('localhost') || finalStoredUrl.includes('127.0.0.1')) {
+            localStorage.removeItem('dasha_quest_final_video_url');
+            localStorage.removeItem('dasha_quest_final_server_url');
+          } else {
+            CONFIG.finalVideo = finalStoredUrl;
+            if (finalSrc) finalSrc.src = finalStoredUrl;
+            if (finalVid) finalVid.load();
+            if (finalBadge) finalBadge.innerHTML = `✓ Видео по ссылке`;
+          }
         }
       } catch (e) {}
     }
@@ -5664,12 +5702,42 @@
       if (initOpenBtn) initOpenBtn.classList.remove('hidden');
       if (initGiftCard) initGiftCard.classList.add('hidden');
 
-      // Видео
-      document.getElementById('intro-video-src').src = CONFIG.introVideo;
-      document.getElementById('intro-video').load();
+      // Резистентная настройка видео с автоматическими фоллбэками
+      const setupVideoWithFallback = (vidId, srcId, primarySrc, fallbacks) => {
+        const vid = document.getElementById(vidId);
+        const srcEl = document.getElementById(srcId);
+        if (!vid) return;
 
-      document.getElementById('final-video-src').src = CONFIG.finalVideo;
-      document.getElementById('final-video').load();
+        if (srcEl && primarySrc) {
+          srcEl.src = primarySrc;
+        }
+
+        let fbIdx = 0;
+        const allCandidates = [primarySrc, ...fallbacks];
+        vid.addEventListener('error', () => {
+          fbIdx++;
+          if (fbIdx < allCandidates.length) {
+            vid.src = allCandidates[fbIdx];
+            vid.load();
+          }
+        }, true);
+
+        try {
+          vid.load();
+        } catch (_) {}
+      };
+
+      setupVideoWithFallback('intro-video', 'intro-video-src', CONFIG.introVideo, [
+        './videos/intro_video.mp4',
+        './assets/aistudio/intro_video_h264.mp4',
+        'videos/intro_video.mp4'
+      ]);
+
+      setupVideoWithFallback('final-video', 'final-video-src', CONFIG.finalVideo, [
+        './videos/final_video.mp4',
+        './assets/aistudio/final_video_h264.mp4',
+        'videos/final_video.mp4'
+      ]);
 
       loadSavedVideos();
 
@@ -5805,6 +5873,7 @@
         openMediaModal({
           type: 'video',
           src: CONFIG.introVideo,
+          fallbackSrc: './assets/aistudio/intro_video_h264.mp4',
           title: `Проект 25: Приветственное видео-обращение`,
           subtitle: `Рассекреченный архив • Экран 0`
         });
@@ -5814,6 +5883,7 @@
         openMediaModal({
           type: 'video',
           src: CONFIG.finalVideo,
+          fallbackSrc: './assets/aistudio/final_video_h264.mp4',
           title: `Проект 25: Главное поздравление для Дашули!`,
           subtitle: `С 25-летием, любимая Дашуля!`
         });

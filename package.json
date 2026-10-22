@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --port=3000 --host=0.0.0.0",
-    "prebuild": "node -e \"const fs=require('fs'); ['blok1','blok2','blok3','blok4','videos'].forEach(b=>{if(fs.existsSync(b)){fs.mkdirSync('public/'+b,{recursive:true});fs.cpSync(b,'public/'+b,{recursive:true});}});\"",
+    "prebuild": "node -e \"const fs=require('fs'); ['blok1','blok2','blok3','blok4','videos','assets'].forEach(b=>{if(fs.existsSync(b)){fs.mkdirSync('public/'+b,{recursive:true});fs.cpSync(b,'public/'+b,{recursive:true});}});\"",
     "build": "vite build",
     "preview": "vite preview",
     "clean": "rm -rf dist server.js",
