@@ -9,6 +9,15 @@
   <meta property="og:description" content="Праздничный секретный квест на 25-летие Дашули" />
   <meta property="og:type" content="website" />
   <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+  <script>
+    // GitHub Pages subpath protection: ensure URL ends with / so relative asset paths resolve to repo directory
+    (function() {
+      const p = window.location.pathname;
+      if (p && !p.endsWith('/') && !p.split('/').pop().includes('.')) {
+        window.location.replace(p + '/' + window.location.search + window.location.hash);
+      }
+    })();
+  </script>
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -2170,6 +2179,26 @@
 
     // Алиас для обратной совместимости
     CONFIG.funnyFaces = CONFIG.grimaceArchive;
+
+    // Автоматическая инициализация всех фотоархивов из локальных файлов проекта (для GitHub Pages и Vercel)
+    if (CONFIG.interestingEventsArchive) {
+      CONFIG.interestingEventsArchive.forEach(item => {
+        item.hasRealPhoto = true;
+        item.resolvedPhoto = item.photo;
+      });
+    }
+    if (CONFIG.whoIsOnPhotoArchive) {
+      CONFIG.whoIsOnPhotoArchive.forEach(item => {
+        item.hasRealFullPhoto = true;
+        item.resolvedFullPhoto = item.fullPhoto || `./blok3/kto${item.id}.jpg`;
+      });
+    }
+    if (CONFIG.chronologyArchive) {
+      CONFIG.chronologyArchive.forEach(item => {
+        item.hasRealPhoto = true;
+        item.resolvedPhoto = item.photo;
+      });
+    }
 
     /**
      * ====================================================================
