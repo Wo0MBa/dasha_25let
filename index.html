@@ -258,11 +258,11 @@
               webkit-playsinline
               controls 
               preload="metadata"
-              poster="./videos/intro_poster.jpg"
-              onerror="if(!this.dataset.posterFb){this.dataset.posterFb='1';this.poster='./assets/aistudio/intro_poster.jpg';}">
-              <source id="intro-video-src" src="./videos/intro_video.mp4" type="video/mp4" />
-              <source src="./assets/aistudio/intro_video_h264.mp4" type="video/mp4" />
-              <source src="videos/intro_video.mp4" type="video/mp4" />
+              poster="./videos/intro_poster.jpg?v=20261022_v3"
+              onerror="if(!this.dataset.posterFb){this.dataset.posterFb='1';this.poster='./assets/aistudio/intro_poster.jpg?v=20261022_v3';}">
+              <source id="intro-video-src" src="./videos/intro_video.mp4?v=20261022_v3" type="video/mp4" />
+              <source src="./assets/aistudio/intro_video.mp4?v=20261022_v3" type="video/mp4" />
+              <source src="videos/intro_video.mp4?v=20261022_v3" type="video/mp4" />
               Ваш браузер не поддерживает видео.
             </video>
             
@@ -898,9 +898,17 @@
             </button>
             <button 
               type="button" 
+              onclick="autoOrderChronology()" 
+              class="px-2.5 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition shadow-xs flex items-center gap-1 active:scale-95 cursor-pointer"
+              title="Расставить фотографии строго по порядку годов (без хаоса)">
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>По порядку</span>
+            </button>
+            <button 
+              type="button" 
               onclick="reshuffleChronology()" 
               class="px-2.5 py-1.5 rounded-xl bg-white hover:bg-amber-50 text-slate-800 border border-slate-300 text-xs font-bold transition shadow-xs flex items-center gap-1 active:scale-95 cursor-pointer"
-              title="Перемешать карточки заново">
+              title="Перемешать карточки для игры в угадайку">
               <svg class="w-3.5 h-3.5 text-amber-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
               <span>Перемешать</span>
             </button>
@@ -914,10 +922,10 @@
         <div class="bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-amber-500/10 border-2 border-amber-300/80 rounded-2xl p-3 sm:p-4 mb-4 shadow-xs">
           <div class="flex items-center justify-between flex-wrap gap-2 mb-1">
             <span class="text-slate-950 font-black text-sm sm:text-base font-serif">
-              ⏳ Лента взросления Дашули: 16 памятных годов в 3 ряда (2004 ➔ 2026)
+              ⏳ Лента взросления Дашули: 16 памятных фото по годам (2004 ➔ 2026)
             </span>
             <div class="flex items-center gap-1.5 text-[11px] font-bold text-amber-900 bg-white/80 px-2.5 py-0.5 rounded-lg border border-amber-200">
-              <span>Ряд 1 (2004–2013)</span> • <span>Ряд 2 (2014–2019)</span> • <span>Ряд 3 (2020–2026)</span>
+              <span>Детство (2004–2011)</span> • <span>Юность (2012–2018)</span> • <span>Юбилей (2019–2026)</span>
             </div>
           </div>
           <p class="text-xs sm:text-sm text-slate-800 font-medium leading-relaxed mb-2.5">
@@ -939,8 +947,8 @@
         <!-- Dynamic Feedback Box -->
         <div id="chronology-feedback" class="hidden mb-4 p-4 rounded-2xl text-slate-950 font-medium transition shadow-md"></div>
 
-        <!-- Cards Container (Chronology Timeline Board) - 3 ряда (6 колонок) -->
-        <div id="chronology-cards-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-6 xl:grid-cols-6 gap-2 sm:gap-2.5 md:gap-3 mb-5">
+        <!-- Cards Container (Chronology Timeline Board) - 2 ряда по 8 колонок на десктопе -->
+        <div id="chronology-cards-grid" class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-8 gap-2 sm:gap-2.5 md:gap-3 mb-5">
           <!-- Injected by renderChronologyStep() -->
         </div>
 
@@ -1101,11 +1109,11 @@
               webkit-playsinline
               controls 
               preload="metadata"
-              poster="./videos/final_poster.jpg"
-              onerror="if(!this.dataset.posterFb){this.dataset.posterFb='1';this.poster='./assets/aistudio/final_poster.jpg';}">
-              <source id="final-video-src" src="./videos/final_video.mp4" type="video/mp4" />
-              <source src="./assets/aistudio/final_video_h264.mp4" type="video/mp4" />
-              <source src="videos/final_video.mp4" type="video/mp4" />
+              poster="./videos/final_poster.jpg?v=20261022_v3"
+              onerror="if(!this.dataset.posterFb){this.dataset.posterFb='1';this.poster='./assets/aistudio/final_poster.jpg?v=20261022_v3';}">
+              <source id="final-video-src" src="./videos/final_video.mp4?v=20261022_v3" type="video/mp4" />
+              <source src="./assets/aistudio/final_video_h264.mp4?v=20261022_v3" type="video/mp4" />
+              <source src="videos/final_video.mp4?v=20261022_v3" type="video/mp4" />
               Ваш браузер не поддерживает видео.
             </video>
 
@@ -1562,10 +1570,10 @@
 
       giftLocation: "Твои подарки от семьи спрятаны в пакете в месте, которое полно загадочных горячительных напитков! 🍾✨",
 
-      introVideo: "./videos/intro_video.mp4",
-      finalVideo: "./videos/final_video.mp4",
-      defaultIntroVideo: "./videos/intro_video.mp4",
-      defaultFinalVideo: "./videos/final_video.mp4",
+      introVideo: "./videos/intro_video.mp4?v=20261022_v3",
+      finalVideo: "./videos/final_video.mp4?v=20261022_v3",
+      defaultIntroVideo: "./videos/intro_video.mp4?v=20261022_v3",
+      defaultFinalVideo: "./videos/final_video.mp4?v=20261022_v3",
 
       // ================================================================
       // КАТЕГОРИЯ 1: КАРТОТЕКА ГРИМАС (5 СЕКРЕТНЫХ УЛИК ПОД ЗАМКОМ)
@@ -2142,41 +2150,44 @@
       // Выдаёт 4-ю цифру кода: "1"
       // ================================================================
       // ================================================================
+      // ================================================================
+      // КАТЕГОРИЯ 4: ХРОНОЛОГИЯ ЖИЗНИ (16 ФОТО ПО ГОДАМ: 2004 — 2026)
+      // ================================================================
       // КАТЕГОРИЯ 4: ХРОНОЛОГИЯ ЖИЗНИ (16 ФОТО ПО ГОДАМ: 2004 — 2026)
       // Выдаёт 4-ю цифру кода: "1"
       // ================================================================
       chronologyArchive: (() => {
         const DEFAULT_16_YEARS = [
-          { id: 1, year: 2004, age: "3 годика", photo: "./blok4/humor1.jpg", title: "2004 год", note: "3 годика: Малышка и первые шаги", targetOrder: 1 },
-          { id: 2, year: 2008, age: "7 лет", photo: "./blok4/humor2.jpg", title: "2008 год", note: "7 лет: Школьная пора, 1-й класс", targetOrder: 2 },
-          { id: 3, year: 2010, age: "9 лет", photo: "./blok4/humor3.jpg", title: "2010 год", note: "9 лет: Детские забавы и открытия", targetOrder: 3 },
-          { id: 4, year: 2011, age: "10 лет", photo: "./blok4/humor4.jpg", title: "2011 год", note: "10 лет: Первый круглый юбилей!", targetOrder: 4 },
-          { id: 5, year: 2012, age: "11 лет", photo: "./blok4/humor5.jpg", title: "2012 год", note: "11 лет: Новые горизонты", targetOrder: 5 },
-          { id: 6, year: 2013, age: "12 лет", photo: "./blok4/humor6.jpg", title: "2013 год", note: "12 лет: Яркие увлечения", targetOrder: 6 },
-          { id: 7, year: 2014, age: "13 лет", photo: "./blok4/humor7.jpg", title: "2014 год", note: "13 лет: Приключения и друзья", targetOrder: 7 },
-          { id: 8, year: 2015, age: "14 лет", photo: "./blok4/humor8.jpg", title: "2015 год", note: "14 лет: Паспортный возраст!", targetOrder: 8 },
-          { id: 9, year: 2016, age: "15 лет", photo: "./blok4/humor9.jpg", title: "2016 год", note: "15 лет: Юношеский драйв и стиль", targetOrder: 9 },
-          { id: 10, year: 2017, age: "16 лет", photo: "./blok4/humor10.jpg", title: "2017 год", note: "16 лет: Sweet Sixteen", targetOrder: 10 },
-          { id: 11, year: 2018, age: "17 лет", photo: "./blok4/humor11.jpg", title: "2018 год", note: "17 лет: Выпускной класс", targetOrder: 11 },
-          { id: 12, year: 2019, age: "18 лет", photo: "./blok4/humor12.jpg", title: "2019 год", note: "18 лет: Совершеннолетие!", targetOrder: 12 },
-          { id: 13, year: 2020, age: "19 лет", photo: "./blok4/humor13.jpg", title: "2020 год", note: "19 лет: Студенческие дни", targetOrder: 13 },
-          { id: 14, year: 2021, age: "20 лет", photo: "./blok4/humor14.jpg", title: "2021 год", note: "20 лет: Круглые 20 лет!", targetOrder: 14 },
-          { id: 15, year: 2024, age: "23 года", photo: "./blok4/humor15.jpg", title: "2024 год", note: "23 года: Новые вершины и цели", targetOrder: 15 },
-          { id: 16, year: 2026, age: "25 лет", photo: "./blok4/humor16.jpg", title: "2026 год", note: "25 лет: Прекрасный юбилей!", targetOrder: 16 }
+          { id: 1, year: 2004, age: "3 годика", photo: "./blok4/2004.jpg", title: "2004 год", note: "3 годика: Малышка и первые шаги", targetOrder: 1 },
+          { id: 2, year: 2008, age: "7 лет", photo: "./blok4/2008.jpg", title: "2008 год", note: "7 лет: Морские каникулы, радость и солнце", targetOrder: 2 },
+          { id: 3, year: 2010, age: "9 лет", photo: "./blok4/2010.jpg", title: "2010 год", note: "9 лет: Домашние шалости и детские забавы", targetOrder: 3 },
+          { id: 4, year: 2011, age: "10 лет", photo: "./blok4/2011.jpg", title: "2011 год", note: "10 лет: Европейские прогулки и велосипеды", targetOrder: 4 },
+          { id: 5, year: 2012, age: "11 лет", photo: "./blok4/2012.jpg", title: "2012 год", note: "11 лет: Парк, кофе и посиделки с друзьями", targetOrder: 5 },
+          { id: 6, year: 2013, age: "12 лет", photo: "./blok4/2013.jpg", title: "2013 год", note: "12 лет: Домашние бьюти-эксперименты", targetOrder: 6 },
+          { id: 7, year: 2014, age: "13 лет", photo: "./blok4/2014.jpg", title: "2014 год", note: "13 лет: Стадион и поддержка любимой команды", targetOrder: 7 },
+          { id: 8, year: 2015, age: "14 лет", photo: "./blok4/2015.jpg", title: "2015 год", note: "14 лет: Юность, друзья и улыбки («Городок 2015»)", targetOrder: 8 },
+          { id: 9, year: 2016, age: "15 лет", photo: "./blok4/2016.jpg", title: "2016 год", note: "15 лет: Выпуск детской хоровой школы, диплом и грамота", targetOrder: 9 },
+          { id: 10, year: 2017, age: "16 лет", photo: "./blok4/2017.jpg", title: "2017 год", note: "16 лет: Сцена, бирюзовое платье и сольный вокал", targetOrder: 10 },
+          { id: 11, year: 2018, age: "17 лет", photo: "./blok4/2018.jpg", title: "2018 год", note: "17 лет: Морская форма «Артек» и верные подруги", targetOrder: 11 },
+          { id: 12, year: 2019, age: "18 лет", photo: "./blok4/2019.jpg", title: "2019 год", note: "18 лет: Совершеннолетие — 18 сердец-шаров!", targetOrder: 12 },
+          { id: 13, year: 2020, age: "19 лет", photo: "./blok4/2020.jpg", title: "2020 год", note: "19 лет: Новогодняя сказка у ёлки", targetOrder: 13 },
+          { id: 14, year: 2021, age: "20 лет", photo: "./blok4/2021.jpg", title: "2021 год", note: "20 лет: За штурвалом корабля: курс во взрослую жизнь!", targetOrder: 14 },
+          { id: 15, year: 2024, age: "23 года", photo: "./blok4/2024.jpg", title: "2024 год", note: "23 года: Горный каньон, приключения и путешествия", targetOrder: 15 },
+          { id: 16, year: 2026, age: "25 лет", photo: "./blok4/2026.jpg", title: "2026 год", note: "25 лет: Прекрасный юбилей 25 лет: искусство и мечта!", targetOrder: 16 }
         ];
 
         try {
-          // Clear legacy duplicate cache if present
-          if (localStorage.getItem('dasha_quest_chronology_archive_v2')) {
-            localStorage.removeItem('dasha_quest_chronology_archive_v2');
-            localStorage.removeItem('dasha_quest_chronology_archive');
-            localStorage.removeItem('humor_photo_8');
-            localStorage.removeItem('humor_photo_9');
+          // Clear legacy caches to guarantee fresh, non-duplicated state
+          ['dasha_quest_chronology_archive', 'dasha_quest_chronology_archive_v2', 'dasha_quest_chronology_archive_v3', 'dasha_quest_chronology_archive_v4', 'dasha_quest_chronology_archive_v5', 'dasha_quest_chronology_archive_v6', 'dasha_quest_chronology_archive_v7'].forEach(k => {
+            try { localStorage.removeItem(k); } catch (e) {}
+          });
+          for (let i = 1; i <= 25; i++) {
+            try { localStorage.removeItem(`humor_photo_${i}`); } catch (e) {}
           }
-          const saved = localStorage.getItem('dasha_quest_chronology_archive_v3');
+          const saved = localStorage.getItem('dasha_quest_chronology_archive_v8');
           if (saved) {
             const parsed = JSON.parse(saved);
-            if (Array.isArray(parsed) && parsed.length === 16) return parsed;
+            if (Array.isArray(parsed) && parsed.length === DEFAULT_16_YEARS.length) return parsed;
           }
         } catch (e) {
           console.warn('Error loading chronology archive from localStorage:', e);
@@ -4503,7 +4514,7 @@
     // Сохранение архива хронологии в LocalStorage
     function saveChronologyArchive() {
       try {
-        localStorage.setItem('dasha_quest_chronology_archive_v3', JSON.stringify(CONFIG.chronologyArchive));
+        localStorage.setItem('dasha_quest_chronology_archive_v8', JSON.stringify(CONFIG.chronologyArchive));
       } catch (e) {
         console.warn('LocalStorage save error:', e);
       }
@@ -4517,9 +4528,18 @@
           data.files.forEach(f => knownServerHumorPhotos.add(f.toLowerCase()));
           const archive = CONFIG.chronologyArchive || [];
           archive.forEach(item => {
+            const photoFilename = item.photo ? item.photo.split('/').pop().toLowerCase() : '';
             const match = data.files.find(f => {
-              const base = f.toLowerCase().replace(/\.[^.]+$/, '');
-              return base === `humor${item.id}` || base === `joke${item.id}` || base === `moment${item.id}` || base === `chrono${item.id}` || base === `${item.id}`;
+              const fLow = f.toLowerCase();
+              if (photoFilename && fLow === photoFilename) return true;
+              const base = fLow.replace(/\.[^.]+$/, '');
+              const yStr = String(item.year || '');
+              return (yStr && (base === yStr || base.startsWith(yStr))) ||
+                     base === `humor${item.id}` || 
+                     base === `joke${item.id}` || 
+                     base === `moment${item.id}` || 
+                     base === `chrono${item.id}` || 
+                     base === `${item.id}`;
             });
             if (match) {
               item.resolvedPhoto = `./blok4/${match}`;
@@ -4543,7 +4563,9 @@
       reader.onload = function(e) {
         const dataUrl = e.target.result;
         const ext = (file.name.match(/\.[^.]+$/)?.[0] || '.jpg').toLowerCase();
-        const serverFilename = `humor${photoId}${ext}`;
+        let item = CONFIG.chronologyArchive.find(x => x.id === photoId);
+        const fileYear = item && item.year ? item.year : photoId;
+        const serverFilename = `${fileYear}${ext}`;
 
         // Сохранение в LocalStorage
         try {
@@ -4553,7 +4575,6 @@
         }
 
         // Обновляем или добавляем в массив CONFIG.chronologyArchive
-        let item = CONFIG.chronologyArchive.find(x => x.id === photoId);
         if (isNew || !item) {
           item = {
             id: photoId,
@@ -4777,30 +4798,38 @@
     }
 
     /**
-     * Сброс хронологии к исходным 16 годам (2004–2026)
+     * Сброс хронологии к исходным 14 годам (2004–2026)
      */
     function resetChronologyToDefault() {
-      if (!confirm('Сбросить хронологию к исходным 16 годам (2004–2026)?')) return;
+      if (!confirm('Сбросить хронологию к исходным 14 годам (2004–2026)?')) return;
       localStorage.removeItem('dasha_quest_chronology_archive');
       localStorage.removeItem('dasha_quest_chronology_archive_v2');
       localStorage.removeItem('dasha_quest_chronology_archive_v3');
+      localStorage.removeItem('dasha_quest_chronology_archive_v4');
+      localStorage.removeItem('dasha_quest_chronology_archive_v5');
+      localStorage.removeItem('dasha_quest_chronology_archive_v6');
+      localStorage.removeItem('dasha_quest_chronology_archive_v7');
+      localStorage.removeItem('dasha_quest_chronology_archive_v8');
+      for (let i = 1; i <= 25; i++) {
+        localStorage.removeItem(`humor_photo_${i}`);
+      }
       const DEFAULT_16_YEARS = [
-        { id: 1, year: 2004, age: "3 годика", photo: "./blok4/humor1.jpg", title: "2004 год", note: "3 годика: Малышка и первые шаги", targetOrder: 1 },
-        { id: 2, year: 2008, age: "7 лет", photo: "./blok4/humor2.jpg", title: "2008 год", note: "7 лет: Школьная пора, 1-й класс", targetOrder: 2 },
-        { id: 3, year: 2010, age: "9 лет", photo: "./blok4/humor3.jpg", title: "2010 год", note: "9 лет: Детские забавы и открытия", targetOrder: 3 },
-        { id: 4, year: 2011, age: "10 лет", photo: "./blok4/humor4.jpg", title: "2011 год", note: "10 лет: Первый круглый юбилей!", targetOrder: 4 },
-        { id: 5, year: 2012, age: "11 лет", photo: "./blok4/humor5.jpg", title: "2012 год", note: "11 лет: Новые горизонты", targetOrder: 5 },
-        { id: 6, year: 2013, age: "12 лет", photo: "./blok4/humor6.jpg", title: "2013 год", note: "12 лет: Яркие увлечения", targetOrder: 6 },
-        { id: 7, year: 2014, age: "13 лет", photo: "./blok4/humor7.jpg", title: "2014 год", note: "13 лет: Приключения и друзья", targetOrder: 7 },
-        { id: 8, year: 2015, age: "14 лет", photo: "./blok4/humor8.jpg", title: "2015 год", note: "14 лет: Паспортный возраст!", targetOrder: 8 },
-        { id: 9, year: 2016, age: "15 лет", photo: "./blok4/humor9.jpg", title: "2016 год", note: "15 лет: Юношеский драйв и стиль", targetOrder: 9 },
-        { id: 10, year: 2017, age: "16 лет", photo: "./blok4/humor10.jpg", title: "2017 год", note: "16 лет: Sweet Sixteen", targetOrder: 10 },
-        { id: 11, year: 2018, age: "17 лет", photo: "./blok4/humor11.jpg", title: "2018 год", note: "17 лет: Выпускной класс", targetOrder: 11 },
-        { id: 12, year: 2019, age: "18 лет", photo: "./blok4/humor12.jpg", title: "2019 год", note: "18 лет: Совершеннолетие!", targetOrder: 12 },
-        { id: 13, year: 2020, age: "19 лет", photo: "./blok4/humor13.jpg", title: "2020 год", note: "19 лет: Студенческие дни", targetOrder: 13 },
-        { id: 14, year: 2021, age: "20 лет", photo: "./blok4/humor14.jpg", title: "2021 год", note: "20 лет: Круглые 20 лет!", targetOrder: 14 },
-        { id: 15, year: 2024, age: "23 года", photo: "./blok4/humor15.jpg", title: "2024 год", note: "23 года: Новые вершины и цели", targetOrder: 15 },
-        { id: 16, year: 2026, age: "25 лет", photo: "./blok4/humor16.jpg", title: "2026 год", note: "25 лет: Прекрасный юбилей!", targetOrder: 16 }
+        { id: 1, year: 2004, age: "3 годика", photo: "./blok4/2004.jpg", title: "2004 год", note: "3 годика: Малышка и первые шаги", targetOrder: 1 },
+        { id: 2, year: 2008, age: "7 лет", photo: "./blok4/2008.jpg", title: "2008 год", note: "7 лет: Морские каникулы, радость и солнце", targetOrder: 2 },
+        { id: 3, year: 2010, age: "9 лет", photo: "./blok4/2010.jpg", title: "2010 год", note: "9 лет: Домашние шалости и детские забавы", targetOrder: 3 },
+        { id: 4, year: 2011, age: "10 лет", photo: "./blok4/2011.jpg", title: "2011 год", note: "10 лет: Европейские прогулки и велосипеды", targetOrder: 4 },
+        { id: 5, year: 2012, age: "11 лет", photo: "./blok4/2012.jpg", title: "2012 год", note: "11 лет: Парк, кофе и посиделки с друзьями", targetOrder: 5 },
+        { id: 6, year: 2013, age: "12 лет", photo: "./blok4/2013.jpg", title: "2013 год", note: "12 лет: Домашние бьюти-эксперименты", targetOrder: 6 },
+        { id: 7, year: 2014, age: "13 лет", photo: "./blok4/2014.jpg", title: "2014 год", note: "13 лет: Стадион и поддержка любимой команды", targetOrder: 7 },
+        { id: 8, year: 2015, age: "14 лет", photo: "./blok4/2015.jpg", title: "2015 год", note: "14 лет: Юность, друзья и улыбки («Городок 2015»)", targetOrder: 8 },
+        { id: 9, year: 2016, age: "15 лет", photo: "./blok4/2016.jpg", title: "2016 год", note: "15 лет: Выпуск детской хоровой школы, диплом и грамота", targetOrder: 9 },
+        { id: 10, year: 2017, age: "16 лет", photo: "./blok4/2017.jpg", title: "2017 год", note: "16 лет: Сцена, бирюзовое платье и сольный вокал", targetOrder: 10 },
+        { id: 11, year: 2018, age: "17 лет", photo: "./blok4/2018.jpg", title: "2018 год", note: "17 лет: Морская форма «Артек» и верные подруги", targetOrder: 11 },
+        { id: 12, year: 2019, age: "18 лет", photo: "./blok4/2019.jpg", title: "2019 год", note: "18 лет: Совершеннолетие — 18 сердец-шаров!", targetOrder: 12 },
+        { id: 13, year: 2020, age: "19 лет", photo: "./blok4/2020.jpg", title: "2020 год", note: "19 лет: Новогодняя сказка у ёлки", targetOrder: 13 },
+        { id: 14, year: 2021, age: "20 лет", photo: "./blok4/2021.jpg", title: "2021 год", note: "20 лет: За штурвалом корабля: курс во взрослую жизнь!", targetOrder: 14 },
+        { id: 15, year: 2024, age: "23 года", photo: "./blok4/2024.jpg", title: "2024 год", note: "23 года: Горный каньон, приключения и путешествия", targetOrder: 15 },
+        { id: 16, year: 2026, age: "25 лет", photo: "./blok4/2026.jpg", title: "2026 год", note: "25 лет: Прекрасный юбилей 25 лет: искусство и мечта!", targetOrder: 16 }
       ];
       CONFIG.chronologyArchive = DEFAULT_16_YEARS;
       saveChronologyArchive();
@@ -4872,7 +4901,7 @@
                 <span class="text-[10px] font-bold text-slate-700 bg-slate-100 px-2 py-0.5 rounded-lg border border-slate-200">
                   ${item.age || (item.year ? item.year - 2001 + ' лет' : '')}
                 </span>
-                <span class="text-[10px] text-slate-400 font-mono">humor${item.id}.jpg</span>
+                <span class="text-[10px] text-slate-400 font-mono">${item.year}.jpg</span>
               </div>
               <div class="text-xs font-semibold text-slate-700 truncate mt-1 flex items-center gap-1">
                 <span>Воспоминание:</span>
@@ -4931,7 +4960,7 @@
     }
 
     /**
-     * Убедиться, что порядок карточек инициализирован и перемешан
+     * Убедиться, что порядок карточек инициализирован (по умолчанию - хронологический)
      */
     function ensureChronologyShuffled() {
       const archive = CONFIG.chronologyArchive || [];
@@ -4942,20 +4971,23 @@
         ids.every(id => state.chronologyPlayerOrder.includes(id));
 
       if (!isValid) {
-        let shuffled = [...ids];
-        if (shuffled.length > 1) {
-          for (let i = shuffled.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-          }
-          // Убеждаемся, что не отсортировано случайно
-          const isSorted = shuffled.every((id, idx) => id === ids[idx]);
-          if (isSorted && shuffled.length > 1) {
-            [shuffled[0], shuffled[1]] = [shuffled[1], shuffled[0]];
-          }
-        }
-        state.chronologyPlayerOrder = shuffled;
+        state.chronologyPlayerOrder = [...ids];
       }
+    }
+
+    /**
+     * Быстрая расстановка карточек по порядку годов (без хаоса)
+     */
+    function autoOrderChronology() {
+      soundEffects.click();
+      const archive = CONFIG.chronologyArchive || [];
+      state.chronologyPlayerOrder = archive.map(x => x.id);
+      state.chronologyVerified = false;
+      state.chronologySelectedCardIndex = null;
+      const fb = document.getElementById('chronology-feedback');
+      if (fb) fb.classList.add('hidden');
+      renderChronologyStep();
+      showToast('✓ Фотографии расставлены строго по годам!');
     }
 
     /**
@@ -5073,9 +5105,9 @@
           fb.className = 'mb-4 p-4 rounded-2xl text-xs md:text-sm font-bold text-center bg-emerald-100 text-emerald-950 border-2 border-emerald-500 block shadow-md animate-fade';
           fb.innerHTML = `
             <div class="flex items-center justify-center gap-2 text-emerald-900 text-base font-black mb-1">
-              <span>🎉 БЛЕСТЯЩЕ! ВСЕ 16 ГОДОВ РАССТАВЛЕНЫ ИДЕАЛЬНО!</span>
+              <span>🎉 БЛЕСТЯЩЕ! ВСЕ ${total} ГОДОВ РАССТАВЛЕНЫ ИДЕАЛЬНО!</span>
             </div>
-            <span>Все 16 памятных фотографий Дашули от 2004 года (3 годика) до 2026 года (25 лет!) стоят на своих местах! Разблокирована финальная 4-я цифра шифра: <b class="font-mono text-base text-emerald-900">1</b></span>
+            <span>Все ${total} памятных фотографий Дашули от ${archive[0]?.year || 2004} года (${archive[0]?.age || '3 годика'}) до ${archive[total - 1]?.year || 2026} года (${archive[total - 1]?.age || '25 лет!'}) стоят на своих местах! Разблокирована финальная 4-я цифра шифра: <b class="font-mono text-base text-emerald-900">1</b></span>
           `;
         }
 
@@ -5121,7 +5153,7 @@
       const counterEl = document.getElementById('humor-progress-counter');
       if (counterEl) {
         if (state.chronologySolved) {
-          counterEl.textContent = `✓ Все 16 годов раскрыты (Код: 1)`;
+          counterEl.textContent = `✓ Все ${total} годов раскрыты (Код: 1)`;
           counterEl.className = 'text-xs sm:text-sm text-emerald-950 font-bold bg-emerald-100 px-3 py-1 rounded-xl border border-emerald-300 shadow-xs';
         } else {
           counterEl.textContent = `${total} фото (2004–2026)`;
@@ -5182,10 +5214,6 @@
           cardClasses += 'bg-amber-100 border-amber-500 ring-4 ring-amber-400 scale-102 shadow-md ';
         } else {
           cardClasses += 'bg-white hover:bg-slate-50 border-slate-200 hover:border-amber-300 ';
-        }
-        // В 3-рядовой сетке (6 колонок): центрируем 4 карточки последнего 3-го ряда
-        if (archive.length === 16 && idx === 12) {
-          cardClasses += 'md:col-start-2 ';
         }
         card.className = cardClasses;
 
@@ -5640,6 +5668,20 @@
     }
 
     async function loadSavedVideos() {
+      // Invalidate any older uploaded or cached videos so project defaults take precedence
+      const CURRENT_VIDEO_REVISION = '20261022_v3';
+      if (localStorage.getItem('dasha_quest_video_rev') !== CURRENT_VIDEO_REVISION) {
+        localStorage.setItem('dasha_quest_video_rev', CURRENT_VIDEO_REVISION);
+        localStorage.removeItem('dasha_quest_intro_video_url');
+        localStorage.removeItem('dasha_quest_intro_server_url');
+        localStorage.removeItem('dasha_quest_final_video_url');
+        localStorage.removeItem('dasha_quest_final_server_url');
+        try {
+          await deleteVideoFromDB('intro');
+          await deleteVideoFromDB('final');
+        } catch (_) {}
+      }
+
       // Intro video
       try {
         const introRecord = await getVideoFromDB('intro');
@@ -5735,15 +5777,15 @@
       };
 
       setupVideoWithFallback('intro-video', 'intro-video-src', CONFIG.introVideo, [
-        './videos/intro_video.mp4',
-        './assets/aistudio/intro_video_h264.mp4',
-        'videos/intro_video.mp4'
+        './videos/intro_video.mp4?v=20261022_v3',
+        './assets/aistudio/intro_video_h264.mp4?v=20261022_v3',
+        'videos/intro_video.mp4?v=20261022_v3'
       ]);
 
       setupVideoWithFallback('final-video', 'final-video-src', CONFIG.finalVideo, [
-        './videos/final_video.mp4',
-        './assets/aistudio/final_video_h264.mp4',
-        'videos/final_video.mp4'
+        './videos/final_video.mp4?v=20261022_v3',
+        './assets/aistudio/final_video_h264.mp4?v=20261022_v3',
+        'videos/final_video.mp4?v=20261022_v3'
       ]);
 
       loadSavedVideos();
@@ -5880,7 +5922,7 @@
         openMediaModal({
           type: 'video',
           src: CONFIG.introVideo,
-          fallbackSrc: './assets/aistudio/intro_video_h264.mp4',
+          fallbackSrc: './assets/aistudio/intro_video_h264.mp4?v=20261022_v3',
           title: `Проект 25: Приветственное видео-обращение`,
           subtitle: `Рассекреченный архив • Экран 0`
         });
@@ -5890,7 +5932,7 @@
         openMediaModal({
           type: 'video',
           src: CONFIG.finalVideo,
-          fallbackSrc: './assets/aistudio/final_video_h264.mp4',
+          fallbackSrc: './assets/aistudio/final_video_h264.mp4?v=20261022_v3',
           title: `Проект 25: Главное поздравление для Дашули!`,
           subtitle: `С 25-летием, любимая Дашуля!`
         });
